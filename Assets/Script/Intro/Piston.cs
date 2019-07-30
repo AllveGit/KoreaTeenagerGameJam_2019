@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Piston : MonoBehaviour
 {
-    public Vector2 TargetPos;
+    public Transform TargetPos;
     public float fSpeed;
+    bool bPistolEnd = false; 
 
     // Start is called before the first frame update
     void Start()
@@ -16,9 +17,20 @@ public class Piston : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector2 Dir = TargetPos - (Vector2)transform.position;
-        Dir.Normalize();
+        if (!bPistolEnd)
+        {
+            Vector3 Dir = TargetPos.position - this.transform.position;
+            float fDist = Dir.magnitude;
+            Dir.Normalize();
 
-        (Vector2)transform.position += Dir * Time.deltaTime * fSpeed;
+            if (fDist < 1f)
+            {
+                this.transform.position = TargetPos.position;
+                bPistolEnd = true; 
+            }
+
+            else
+                this.transform.position += Dir * Time.deltaTime * fSpeed;
+        }
     }
 }
