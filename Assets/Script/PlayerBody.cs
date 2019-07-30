@@ -7,6 +7,7 @@ public class PlayerBody : MonoBehaviour
     private int myOrder;
     private Transform head;
     private Vector3 movementVelocity = new Vector3(0, 0, 0);
+    private Player player = null;
 
     [Range(0.0f, 1.0f)]
     public float overTime = 0.0f;
@@ -15,6 +16,7 @@ public class PlayerBody : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         head = GameObject.FindGameObjectWithTag("PlayerHead").transform;
 
         List<Transform> bodyList = head.GetComponent<PlayerHead>().bodys;
@@ -36,7 +38,7 @@ public class PlayerBody : MonoBehaviour
 
             Vector3 moveVector = Vector3.SmoothDamp(transform.position, head.position,
                ref movementVelocity, overTime) - transform.position;
-            transform.position += moveVector * head.GetComponent<PlayerHead>().timeScale;
+            transform.position += moveVector * player.timeScale;
 
             Vector3 direction = head.position - transform.position;
             direction.z = 0;
@@ -53,7 +55,7 @@ public class PlayerBody : MonoBehaviour
 
             Vector3 moveVector = Vector3.SmoothDamp(transform.position, bodyList[myOrder - 1].position,
                 ref movementVelocity, overTime) - transform.position;
-            transform.position += moveVector * head.GetComponent<PlayerHead>().timeScale;
+            transform.position += moveVector * player.timeScale;
 
             Vector3 direction = bodyList[myOrder - 1].position - transform.position;
             direction.z = 0;

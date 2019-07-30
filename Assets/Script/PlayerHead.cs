@@ -9,7 +9,6 @@ public class PlayerHead : MonoBehaviour
     [SerializeField]
     private float speed = 3.0f;
 
-    public float timeScale = 1.0f;
 
     // Start is called before the first frame update
     void Start()
