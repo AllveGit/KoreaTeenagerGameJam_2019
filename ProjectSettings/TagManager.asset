@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Wall
   - MapBound
+  - Director
   layers:
   - Default
   - TransparentFX

@@ -7,7 +7,7 @@ public class CameraFollow : MonoBehaviour
     [SerializeField]
     private float MoveSpeed = 3.5f;
 
-    private GameObject Player;
+    private GameObject player;
 
     private BoxCollider2D boundBox;
     private Vector3 minBounds;
@@ -25,10 +25,18 @@ public class CameraFollow : MonoBehaviour
 
     private static bool CameraExists;
 
+    public GameObject Player { get => player; set => player = value; }
+
     void Start()
     {
-
-        Player = GameObject.FindGameObjectWithTag("PlayerHead");
+        Player = GameObject.FindGameObjectWithTag("Director");
+        if(player == null)
+            Player = GameObject.FindGameObjectWithTag("PlayerHead");
+        else
+        {
+            Director director = player.GetComponent<Director>();
+            director.StartCoroutine(director.Zoom());
+        }
 
         if (boundBox == null)
         {

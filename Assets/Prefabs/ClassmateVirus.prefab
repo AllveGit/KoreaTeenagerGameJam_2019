@@ -315,7 +315,7 @@ GameObject:
   - component: {fileID: 8300350889448947813}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: PlayerHead
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -669,6 +669,7 @@ MonoBehaviour:
   timeScale: 1
   scale: 1
   speed: 3
+  body: {fileID: 0}
   targetPos: {x: 25, y: 30, z: 0}
 --- !u!1 &6697462938891711302
 GameObject:

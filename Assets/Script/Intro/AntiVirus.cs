@@ -68,17 +68,17 @@ public class AntiVirus : MonoBehaviour
 
             Destroy(this.gameObject);
         }
-        if(collision.gameObject.layer == 8)
+        else if (collision.gameObject.tag == "Wall")
+        {
+            Dir = -Dir;
+        }
+
+        if (collision.gameObject.layer == 8)
         {
             Player player = collision.GetComponent<PlayerBody>().Player;
 
             player.SizeUp();
-            Destroy(this.gameObject);
-        }
-
-        else if(collision.gameObject.tag == "Wall")
-        {
-            Dir = -Dir;
+            Destroy(gameObject);
         }
     }
 }
