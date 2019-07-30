@@ -48,5 +48,6 @@ public class PlayerBody : MonoBehaviour
 
             //transform.LookAt(head.transform.position);
         }
+        transform.position = new Vector3(transform.position.x, transform.position.y, myOrder);
     }
 }
