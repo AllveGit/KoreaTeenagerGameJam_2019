@@ -11,6 +11,7 @@ public class PlayerBody : MonoBehaviour
     [Range(0.0f, 1.0f)]
     public float overTime = 0.0f;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,23 +32,37 @@ public class PlayerBody : MonoBehaviour
     {
         if(myOrder == 0)
         {
-            if (Vector2.Distance(transform.position, head.position) < 0.3f) return;
+            if (Vector2.Distance(transform.position, head.position) < 0.2f) return;
 
-            transform.position = Vector3.SmoothDamp(transform.position, head.position,
-                ref movementVelocity, overTime);
+            Vector3 moveVector = Vector3.SmoothDamp(transform.position, head.position,
+               ref movementVelocity, overTime) - transform.position;
+            transform.position += moveVector * head.GetComponent<PlayerHead>().timeScale;
 
-            //transform.LookAt(head.transform.position);
+            Vector3 direction = head.position - transform.position;
+            direction.z = 0;
+
+            direction.Normalize();
+
+            float rot_z = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
         }
         else
         {
             List<Transform> bodyList = head.GetComponent<PlayerHead>().bodys;
-            if (Vector2.Distance(transform.position, bodyList[myOrder - 1].position) < 0.3f) return;
+            if (Vector2.Distance(transform.position, bodyList[myOrder - 1].position) < 0.2f) return;
 
-            transform.position = Vector3.SmoothDamp(transform.position, bodyList[myOrder - 1].position,
-                ref movementVelocity, overTime);
+            Vector3 moveVector = Vector3.SmoothDamp(transform.position, bodyList[myOrder - 1].position,
+                ref movementVelocity, overTime) - transform.position;
+            transform.position += moveVector * head.GetComponent<PlayerHead>().timeScale;
 
-            //transform.LookAt(head.transform.position);
+            Vector3 direction = bodyList[myOrder - 1].position - transform.position;
+            direction.z = 0;
+
+            direction.Normalize();
+
+            float rot_z = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
         }
-        transform.position = new Vector3(transform.position.x, transform.position.y, myOrder);
+        transform.position = new Vector3(transform.position.x, transform.position.y, myOrder + 1);
     }
 }
