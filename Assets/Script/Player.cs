@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public List<Transform> bodys = new List<Transform>();
+
     public float timeScale = 1.0f;
 
     public float scale = 1.0f;
+
+    public Transform head;
 
     // Start is called before the first frame update
     void Start()

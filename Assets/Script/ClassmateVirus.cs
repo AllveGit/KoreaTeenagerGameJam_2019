@@ -1,18 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System;
 using UnityEngine;
 
-[Serializable]
-public class PlayerHead : MonoBehaviour
+public class ClassmateVirus : PlayerHead
 {
-    Vector3 moveVector = new Vector3(0, 0, 0);
-    [SerializeField]
-    protected float speed = 3.0f;
-    [SerializeField]
-    protected Player player = null;
+    public Vector3 targetPos;
 
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +15,7 @@ public class PlayerHead : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void FixedUpdate()
@@ -31,16 +25,15 @@ public class PlayerHead : MonoBehaviour
 
     void PlayerMove()
     {
-        Vector3 pos = Input.mousePosition;
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(pos);
+        Vector3 pos = targetPos;
 
-        mousePos.z = 0;
-        if (Vector3.Distance(transform.position, mousePos) < 0.5f) return;
+        pos.z = 0;
+        if (Vector3.Distance(transform.position, pos) < 0.5f) return;
 
-        transform.position = Vector3.MoveTowards(transform.position, mousePos, 
+        transform.position = Vector3.MoveTowards(transform.position, pos,
             Time.fixedDeltaTime * speed * player.timeScale);
 
-        Vector3 direction = mousePos - transform.position;
+        Vector3 direction = pos - transform.position;
         direction.z = 0;
 
         direction.Normalize();
