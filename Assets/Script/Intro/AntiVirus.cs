@@ -63,8 +63,16 @@ public class AntiVirus : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     { 
-        if(collision.gameObject.layer == 8 || collision.gameObject.tag == "Enemy")
+        if(collision.gameObject.tag == "Enemy")
         {
+
+            Destroy(this.gameObject);
+        }
+        if(collision.gameObject.layer == 8)
+        {
+            Player player = collision.GetComponent<PlayerBody>().Player;
+
+            player.SizeUp();
             Destroy(this.gameObject);
         }
 

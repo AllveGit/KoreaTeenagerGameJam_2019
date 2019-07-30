@@ -10,14 +10,23 @@ public class Player : MonoBehaviour
 
     public float scale = 1.0f;
 
-    private PlayerHead head = null;
+    private PlayerBody head = null;
 
-    public PlayerHead Head { get => head; set => head = value; }
+    public PlayerBody Head { get => head; set => head = value; }
+    public bool IsDie { get => isDie; set => isDie = value; }
+
+    private bool isDie = false;
+
+    public float speed = 3.0f;
+
+    [SerializeField]
+    private GameObject body = null;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        Head = bodys[0].GetComponent<PlayerHead>();
+        Head = bodys[0].GetComponent<PlayerBody>();
     }
 
     // Update is called once per frame
@@ -34,4 +43,35 @@ public class Player : MonoBehaviour
         Head.PlayerMove(mouse);
     }
 
+    public IEnumerator PlayerDie()
+    {
+        float time = 0.0f;
+        while(time < 1.0f)
+        {
+            for (int i = 0; i < bodys.Count; i++)
+            {
+                SpriteRenderer spRenderer = bodys[i].GetComponent<SpriteRenderer>();
+
+                spRenderer.color -= new Color(0, 0, 0, 0.1f);
+            }
+            yield return new WaitForSeconds(0.1f);
+        }
+        Destroy(gameObject);
+    }
+
+    public void SizeUp()
+    {
+        scale += 0.1f;
+
+        if(scale % 1 == 0)
+        {
+            GameObject obj = Instantiate(body, transform);
+
+            bodys.Add(obj.transform);
+            var temp = bodys[bodys.Count - 1];
+            bodys[bodys.Count - 1].position = bodys[bodys.Count - 2].position;
+            bodys[bodys.Count - 1] = bodys[bodys.Count - 2];
+            bodys[bodys.Count - 2] = temp;
+        }
+    }
 }
