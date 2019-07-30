@@ -32,39 +32,27 @@ public class PlayerBody : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        if(myOrder == 0)
-        {
-            if (Vector2.Distance(transform.position, head.position) < 0.2f) return;
+        BodyMove();
+    }
 
-            Vector3 moveVector = Vector3.SmoothDamp(transform.position, head.position,
-               ref movementVelocity, overTime) - transform.position;
-            transform.position += moveVector * player.timeScale;
+    private void BodyMove()
+    {
+        List<Transform> bodyList = head.GetComponent<PlayerHead>().bodys;
+        if (Vector2.Distance(transform.position, bodyList[myOrder - 1].position) < 0.2f) return;
 
-            Vector3 direction = head.position - transform.position;
-            direction.z = 0;
+        Vector3 moveVector = Vector3.SmoothDamp(transform.position, bodyList[myOrder - 1].position,
+            ref movementVelocity, overTime) - transform.position;
+        transform.position += moveVector * player.timeScale;
 
-            direction.Normalize();
+        Vector3 direction = bodyList[myOrder - 1].position - transform.position;
+        direction.z = 0;
 
-            float rot_z = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
-        }
-        else
-        {
-            List<Transform> bodyList = head.GetComponent<PlayerHead>().bodys;
-            if (Vector2.Distance(transform.position, bodyList[myOrder - 1].position) < 0.2f) return;
+        direction.Normalize();
 
-            Vector3 moveVector = Vector3.SmoothDamp(transform.position, bodyList[myOrder - 1].position,
-                ref movementVelocity, overTime) - transform.position;
-            transform.position += moveVector * player.timeScale;
+        float rot_z = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-            Vector3 direction = bodyList[myOrder - 1].position - transform.position;
-            direction.z = 0;
+        transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
 
-            direction.Normalize();
-
-            float rot_z = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
-        }
         transform.position = new Vector3(transform.position.x, transform.position.y, myOrder + 1);
     }
 }
