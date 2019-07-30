@@ -23,7 +23,7 @@ public class Piston : MonoBehaviour
             float fDist = Dir.magnitude;
             Dir.Normalize();
 
-            if (fDist < 1f)
+            if (fDist < 0.1f)
             {
                 this.transform.position = TargetPos.position;
                 bPistolEnd = true; 
