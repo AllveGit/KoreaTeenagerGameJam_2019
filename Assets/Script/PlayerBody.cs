@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerBody : MonoBehaviour
 {
     private int myOrder;
-    private Transform head;
     private Vector3 movementVelocity = new Vector3(0, 0, 0);
     [SerializeField]
     private Player player = null;
@@ -17,8 +16,6 @@ public class PlayerBody : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        head = player.head;
-
         List<Transform> bodyList = player.bodys;
         for(int i = 0; i < bodyList.Count; i++)
         {

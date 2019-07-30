@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-[Serializable]
 public class PlayerHead : MonoBehaviour
 {
     Vector3 moveVector = new Vector3(0, 0, 0);
@@ -24,23 +23,15 @@ public class PlayerHead : MonoBehaviour
         
     }
 
-    private void FixedUpdate()
+    public void PlayerMove(Vector3 targetPos)
     {
-        PlayerMove();
-    }
+        targetPos.z = 0;
+        if (Vector3.Distance(transform.position, targetPos) < 0.5f) return;
 
-    void PlayerMove()
-    {
-        Vector3 pos = Input.mousePosition;
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(pos);
-
-        mousePos.z = 0;
-        if (Vector3.Distance(transform.position, mousePos) < 0.5f) return;
-
-        transform.position = Vector3.MoveTowards(transform.position, mousePos, 
+        transform.position = Vector3.MoveTowards(transform.position, targetPos, 
             Time.fixedDeltaTime * speed * player.timeScale);
 
-        Vector3 direction = mousePos - transform.position;
+        Vector3 direction = targetPos - transform.position;
         direction.z = 0;
 
         direction.Normalize();

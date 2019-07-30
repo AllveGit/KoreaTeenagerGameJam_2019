@@ -10,19 +10,28 @@ public class Player : MonoBehaviour
 
     public float scale = 1.0f;
 
-    public Transform head;
+    private PlayerHead head = null;
+
+    public PlayerHead Head { get => head; set => head = value; }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Head = bodys[0].GetComponent<PlayerHead>();
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.localScale = new Vector3(scale, scale, scale);
-
     }
-    
+
+    private void FixedUpdate()
+    {
+        Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouse.z = 0;
+
+        Head.PlayerMove(mouse);
+    }
+
 }

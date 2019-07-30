@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e46fbd52f95f726438cbe834221f80a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 8152316398968367885}
+  player: {fileID: 7986951073033150300}
   overTime: 0.035
 --- !u!1 &6697462938059905437
 GameObject:
@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e46fbd52f95f726438cbe834221f80a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 8152316398968367885}
+  player: {fileID: 7986951073033150300}
   overTime: 0.035
 --- !u!1 &6697462938565380095
 GameObject:
@@ -198,7 +198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6697462938565380092}
   - component: {fileID: 6697462938565380093}
-  - component: {fileID: 1345443857808858953}
+  - component: {fileID: 9039084981270811099}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: PlayerHead
@@ -268,7 +268,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1345443857808858953
+--- !u!114 &9039084981270811099
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -277,12 +277,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6697462938565380095}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51986f0f4668c9141a7850a024cb2a82, type: 3}
+  m_Script: {fileID: 11500000, guid: c05b90ddae2643347b93c1690496bad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
-  player: {fileID: 8152316398968367885}
-  targetPos: {x: 10, y: 10, z: 0}
+  speed: 3
+  player: {fileID: 7986951073033150300}
 --- !u!1 &6697462938633531091
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,7 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e46fbd52f95f726438cbe834221f80a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 8152316398968367885}
+  player: {fileID: 7986951073033150300}
   overTime: 0.035
 --- !u!1 &6697462938663095354
 GameObject:
@@ -386,7 +385,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6697462938663095355}
-  - component: {fileID: 8152316398968367885}
+  - component: {fileID: 7986951073033150300}
   m_Layer: 0
   m_Name: ClassmateVirus
   m_TagString: Enemy
@@ -414,7 +413,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8152316398968367885
+--- !u!114 &7986951073033150300
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -423,7 +422,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6697462938663095354}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72cf590b8230ffb4e963e2fc2d4f02df, type: 3}
+  m_Script: {fileID: 11500000, guid: 51986f0f4668c9141a7850a024cb2a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bodys:
@@ -435,7 +434,7 @@ MonoBehaviour:
   - {fileID: 6697462938633531118}
   timeScale: 1
   scale: 1
-  head: {fileID: 6697462938565380092}
+  targetPos: {x: 10, y: 10, z: 0}
 --- !u!1 &6697462938891711302
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,7 +527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e46fbd52f95f726438cbe834221f80a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 8152316398968367885}
+  player: {fileID: 7986951073033150300}
   overTime: 0.035
 --- !u!1 &6697462939029470361
 GameObject:
@@ -622,5 +621,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e46fbd52f95f726438cbe834221f80a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 8152316398968367885}
+  player: {fileID: 7986951073033150300}
   overTime: 0.035

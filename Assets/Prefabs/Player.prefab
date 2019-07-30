@@ -425,6 +425,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72cf590b8230ffb4e963e2fc2d4f02df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bodys:
+  - {fileID: 1362912982319227155}
+  - {fileID: 1362912980660453239}
+  - {fileID: 1362912980717496439}
+  - {fileID: 1362912981840468603}
+  - {fileID: 1362912981995001258}
+  - {fileID: 1362912982253111297}
   timeScale: 1
   scale: 1
   head: {fileID: 1362912982319227155}
@@ -614,12 +621,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c05b90ddae2643347b93c1690496bad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bodys:
-  - {fileID: 1362912982319227155}
-  - {fileID: 1362912980660453239}
-  - {fileID: 1362912980717496439}
-  - {fileID: 1362912981840468603}
-  - {fileID: 1362912981995001258}
-  - {fileID: 1362912982253111297}
   speed: 5
   player: {fileID: 1923517621}
