@@ -19,6 +19,7 @@ public class Piston : MonoBehaviour
     {
         if (!bPistolEnd)
         {
+            fSpeed += Time.fixedDeltaTime * 0.1f;
             Vector3 Dir = TargetPos.position - this.transform.position;
             float fDist = Dir.magnitude;
             Dir.Normalize();

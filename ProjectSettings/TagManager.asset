@@ -7,6 +7,7 @@ TagManager:
   - PlayerHead
   - Enemy
   - Wall
+  - MapBound
   layers:
   - Default
   - TransparentFX
