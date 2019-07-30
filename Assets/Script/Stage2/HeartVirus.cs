@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArmVirus : Virus
+public class HeartVirus : Virus
 {
     GameObject m_Player;
     bool bMoving = false;
@@ -44,12 +44,12 @@ public class ArmVirus : Virus
 
         float fDist = vDir.magnitude;
 
-        if(fDist < 5f)
+        if (fDist < 5f)
         {
             bMoving = true;
         }
 
-        if(bMoving)
+        if (bMoving)
         {
 
         }
