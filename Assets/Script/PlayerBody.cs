@@ -38,10 +38,10 @@ public class PlayerBody : MonoBehaviour
     private void BodyMove()
     {
         List<Transform> bodyList = head.GetComponent<PlayerHead>().bodys;
-        if (Vector2.Distance(transform.position, bodyList[myOrder - 1].position) < 0.2f) return;
+        if (Vector2.Distance(transform.position, bodyList[myOrder - 1].position) < 0.15f * (player.scale)) return;
 
         Vector3 moveVector = Vector3.SmoothDamp(transform.position, bodyList[myOrder - 1].position,
-            ref movementVelocity, overTime) - transform.position;
+            ref movementVelocity, overTime * player.scale) - transform.position;
         transform.position += moveVector * player.timeScale;
 
         Vector3 direction = bodyList[myOrder - 1].position - transform.position;

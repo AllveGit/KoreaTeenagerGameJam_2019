@@ -8,11 +8,13 @@ public class PlayerHead : MonoBehaviour
     Vector3 moveVector = new Vector3(0, 0, 0);
     [SerializeField]
     private float speed = 3.0f;
+    private Player player = null;
 
     
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -32,9 +34,10 @@ public class PlayerHead : MonoBehaviour
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(pos);
 
         mousePos.z = 0;
-        if (Vector3.Distance(transform.position, mousePos) < 1.0f) return;
+        if (Vector3.Distance(transform.position, mousePos) < 0.5f) return;
 
-        transform.position = Vector3.MoveTowards(transform.position, mousePos, Time.fixedDeltaTime * speed);
+        transform.position = Vector3.MoveTowards(transform.position, mousePos, 
+            Time.fixedDeltaTime * speed * player.timeScale);
 
         Vector3 direction = mousePos - transform.position;
         direction.z = 0;
