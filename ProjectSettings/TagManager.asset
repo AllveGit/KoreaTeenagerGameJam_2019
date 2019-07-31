@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - MapBound
   - Director
+  - RectangleTile
   layers:
   - Default
   - TransparentFX
