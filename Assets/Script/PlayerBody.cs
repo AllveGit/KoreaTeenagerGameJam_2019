@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBody : VirusObject
+public class PlayerBody : Virus
 {
     private int myOrder;
     private Vector3 movementVelocity = new Vector3(0, 0, 0);
