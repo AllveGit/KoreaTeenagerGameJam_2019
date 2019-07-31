@@ -26,6 +26,7 @@ public class BrainVirus : Virus
         player = GameObject.FindGameObjectWithTag("PlayerHead").GetComponent<PlayerBody>();
         animator = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
+        transform.localScale *= base.VirusScale;
     }
     
 

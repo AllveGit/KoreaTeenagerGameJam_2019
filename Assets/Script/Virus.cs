@@ -5,8 +5,4 @@ using UnityEngine;
 public class Virus : MonoBehaviour
 {
     public float VirusScale;
-    public Virus()
-    {
-        transform.localScale *= VirusScale;
-    }
 }

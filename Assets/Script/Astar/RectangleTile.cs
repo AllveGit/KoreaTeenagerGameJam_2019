@@ -10,12 +10,15 @@ public class RectangleTile : MonoBehaviour
 
     private SpriteRenderer spRenderer = null;
 
+    [SerializeField]
+    private float tileSize = 0.6f;
+
     // Start is called before the first frame update
     void Start()
     {
         spRenderer = GetComponent<SpriteRenderer>();
 
-        Vector2 size = spRenderer.bounds.size * 0.6f;
+        Vector2 size = spRenderer.bounds.size * tileSize;
         Vector3 target = transform.position - new Vector3(size.x, size.y, 0);
         isWall = IsTileWall(new Vector2(target.x, target.y));
         if (isWall == true) return;

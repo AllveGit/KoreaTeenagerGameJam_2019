@@ -8,6 +8,9 @@ public class HeartVirus : Virus
     bool bMoving = false;
     bool bScaleUp = false;
     float fScale = 1.1f;
+    float time = 0.0f;
+    List<Vector2> path;
+    int nowPath = 0;
 
     void Awake()
     {
@@ -47,11 +50,27 @@ public class HeartVirus : Virus
         if (fDist < 5f)
         {
             bMoving = true;
+            path = AstarManager.Instance.AstarPathFinder(transform.position, m_Player.transform.position);
+            nowPath = path.Count - 1;
         }
 
         if (bMoving)
         {
+            time += Time.deltaTime;
+            if (time > 3.0f)
+            {
+                path = AstarManager.Instance.AstarPathFinder(transform.position, m_Player.transform.position);
+                nowPath = path.Count - 1;
+                time = 0.0f;
+            }
+            if (nowPath < 0)
+            {
+                return;
+            }
+            transform.position = Vector2.MoveTowards(transform.position, path[nowPath], Time.fixedDeltaTime);
 
+            if (Vector2.Distance(transform.position, path[nowPath]) < 0.1f)
+                nowPath -= 1;
         }
     }
 }

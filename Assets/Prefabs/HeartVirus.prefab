@@ -112,4 +112,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19b4483cc7ba5e7419005f8bdbfa8f6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VirusScale: 0
+  VirusScale: 2

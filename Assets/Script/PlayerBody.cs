@@ -87,7 +87,7 @@ public class PlayerBody : Virus
         if (collision.gameObject.tag.Equals("Enemy") && Player.IsDie == false)
         {
             Virus virus = collision.gameObject.GetComponent<Virus>();
-            if (virus && virus.VirusScale < player.scale / 2)
+            if (virus && virus.VirusScale <= 1 + player.scale / 2)
             {
                 player.SizeUp();
                 Destroy(virus.gameObject);

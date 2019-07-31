@@ -23,10 +23,10 @@ public class ArmVirus : Virus
         {
             fScale -= Time.fixedDeltaTime;
 
-            if (fScale < 1f)
+            if (fScale < base.VirusScale)
             {
                 bScaleUp = true;
-                fScale = 1f;
+                fScale = base.VirusScale;
             }
         }
 
@@ -34,10 +34,10 @@ public class ArmVirus : Virus
         {
             fScale += Time.fixedDeltaTime;
 
-            if (fScale > 1.1f)
+            if (fScale > base.VirusScale + 0.1f)
             {
                 bScaleUp = false;
-                fScale = 1.1f;
+                fScale = base.VirusScale + 0.1f;
             }
         }
 
@@ -57,7 +57,7 @@ public class ArmVirus : Virus
         if(bMoving)
         {
             time += Time.deltaTime;
-            if (time > 5.0f)
+            if (time > 3.0f)
             {
                 path = AstarManager.Instance.AstarPathFinder(transform.position, m_Player.transform.position);
                 nowPath = path.Count - 1;

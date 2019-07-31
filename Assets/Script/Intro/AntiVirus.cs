@@ -13,12 +13,13 @@ public class AntiVirus : Virus
 
     void Awake()
     {
-        m_Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().Head.gameObject;
+        m_Player = GameObject.FindGameObjectWithTag("Player").gameObject;
         while(Dir.y == 0 || Dir.x == 0)
             Dir = new Vector3(Random.Range(-1, 2), Random.Range(-1, 2), 0);
 
         Angle = Random.Range(0f, 360f);
         transform.localEulerAngles = new Vector3(0, 0, Angle);
+        transform.localScale *= base.VirusScale;
     }
 
     void FixedUpdate()
@@ -47,7 +48,8 @@ public class AntiVirus : Virus
 
         transform.localScale = new Vector3(fScale, fScale, 1);
 
-        Vector3 vDir = m_Player.transform.position - this.transform.position;
+        Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        Vector3 vDir = player.Head.transform.position - this.transform.position;
 
         float fDist = vDir.magnitude;
 

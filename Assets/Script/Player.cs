@@ -132,11 +132,11 @@ public class Player : MonoBehaviour
 
     public void SizeUp()
     {
-        scale += 0.05f;
+        scale += 0.02f;
 
         sizeUpCount++;
 
-        if (sizeUpCount % 2 == 0)
+        if (sizeUpCount % 10 == 0)
         {
             GameObject obj = Instantiate(body, transform);
 
