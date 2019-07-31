@@ -9,6 +9,9 @@ public class CameraFollow : MonoBehaviour
 
     private GameObject player;
 
+    public Texture2D DirectingTexture;
+    private float Alpha = 0;
+
     private BoxCollider2D boundBox;
     private Vector3 minBounds;
     private Vector3 maxBounds;
@@ -85,6 +88,32 @@ public class CameraFollow : MonoBehaviour
             transform.position = new Vector3(ClampedX, ClampedY, -10);
         }
     }
+
+    void OnGUI()
+    {
+        if (FindObjectOfType<Director>().GetDirecting())
+        {
+            Alpha += Time.deltaTime;
+
+            if (Alpha > 1)
+                Alpha = 1;
+        }
+
+        else
+        {
+            Alpha -= Time.deltaTime;
+
+            if (Alpha < 0)
+                Alpha = 0;
+        }
+
+        int drawDepth = -1000;
+        GUI.color = new Color(GUI.color.r, GUI.color.g, GUI.color.b, Alpha);
+        GUI.depth = drawDepth;
+        GUI.DrawTexture(new Rect(0, 0, Screen.width, 100), DirectingTexture);
+        GUI.DrawTexture(new Rect(0, Screen.height - 100, Screen.width, Screen.height), DirectingTexture);
+    }
+
 
     public void SetBounds(BoxCollider2D newBounds)
     {

@@ -6,12 +6,14 @@ public class Director : MonoBehaviour
 {
     CameraFollow camera = null;
     GameObject player = null;
+    bool bDirecting;
 
     // Start is called before the first frame update
     void Start()
     {
         camera = Camera.main.GetComponent<CameraFollow>();
         player = GameObject.FindGameObjectWithTag("PlayerHead");
+        bDirecting = true;
     }
 
     // Update is called once per frame
@@ -30,5 +32,8 @@ public class Director : MonoBehaviour
             yield return new WaitForSeconds(1.0f);
         }
         camera.Player = player.gameObject;
+        bDirecting = false;
     }
+
+    public bool GetDirecting() { return bDirecting; }
 }

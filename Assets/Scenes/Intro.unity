@@ -531,6 +531,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 3.5
+  DirectingTexture: {fileID: 2800000, guid: 15584fa620a6f2b4dacba4a37a61ab6f, type: 3}
 --- !u!1 &976017875
 GameObject:
   m_ObjectHideFlags: 0
@@ -884,15 +885,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6697462938565380095, guid: 10b0248afde7d694caed887128c741a1,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     - target: {fileID: 7986951073033150300, guid: 10b0248afde7d694caed887128c741a1,
         type: 3}
       propertyPath: targetPos.x
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6697462938565380095, guid: 10b0248afde7d694caed887128c741a1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10b0248afde7d694caed887128c741a1, type: 3}
@@ -1240,6 +1241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b41d57f7e22ef42bb1ea34903d53e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SceneNum: 1
 --- !u!1001 &2126992723
 PrefabInstance:
   m_ObjectHideFlags: 0
