@@ -5,6 +5,7 @@ using UnityEngine;
 public class BrainItem : MonoBehaviour
 {
     BrainCounter counter;
+    public GameObject PopupText;
 
     // Start is called before the first frame update
     void Awake()
@@ -17,6 +18,12 @@ public class BrainItem : MonoBehaviour
     {
         if(collision.gameObject.layer == 8)
         {
+
+            GameObject Temp = Instantiate(PopupText, Vector3.zero, Quaternion.identity, GameObject.FindGameObjectWithTag("Finish").transform) as GameObject;
+
+            Vector2 ScreenPos = Camera.main.WorldToScreenPoint(this.transform.position);
+
+            Temp.transform.position = ScreenPos;
             counter.iBrainItemCnt++;
             Destroy(this.gameObject);
         }
