@@ -106,7 +106,7 @@ public class Player : MonoBehaviour
             time += 0.1f;
             yield return new WaitForSeconds(0.1f);
         }
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Destroy(gameObject);
     }
 
     public void SizeUp()

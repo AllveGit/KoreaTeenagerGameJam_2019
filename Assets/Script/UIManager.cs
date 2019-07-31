@@ -1,18 +1,55 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject RetryButton;
+    public GameObject MainMenuButton;
+    public GameObject DieObject;
+    public static UIManager instance = null;
+
+    private void Awake()
     {
-        
+        if (instance == null) instance = this;
+
+        else Destroy(this.gameObject);
+
+        DontDestroyOnLoad(this.gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            Player m_pPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+
+            if (m_pPlayer && m_pPlayer.IsDie)
+            {
+                DieObject.SetActive(true);
+                Vector3 fScale = DieObject.GetComponent<RectTransform>().localScale;
+                fScale += new Vector3(1, 1, 0) * Time.deltaTime * 15;
+
+                if (fScale.x > 4f)
+                {
+                    fScale = new Vector3(4, 4, 4);
+
+                    RetryButton.SetActive(true);
+                    MainMenuButton.SetActive(true);
+                }
+
+                DieObject.GetComponent<RectTransform>().localScale = fScale;
+            }
+        }
+    }
+
+    public void CloseWindow()
+    {
+        DieObject.GetComponent<RectTransform>().localScale = new Vector3(1,1,1);
+        RetryButton.SetActive(false);
+        MainMenuButton.SetActive(false);
+        DieObject.SetActive(false);
     }
 }

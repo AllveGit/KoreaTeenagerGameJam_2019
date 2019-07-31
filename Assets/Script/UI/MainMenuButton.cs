@@ -44,8 +44,20 @@ public class MainMenuButton : MonoBehaviour
         GetComponent<Image>().transform.localScale = new Vector3(fScale, fScale, 1f);
     }
 
-    public void SceneChange()
+    public void Retry()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        UIManager.instance.CloseWindow();
+    }
+
+    public void MainMenu()
     {
         SceneManager.LoadScene(0);
+        UIManager.instance.CloseWindow();
+    }
+
+    public void SceneChange()
+    {
+        SceneManager.LoadScene(1);
     }
 }
