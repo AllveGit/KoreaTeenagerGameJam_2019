@@ -34,6 +34,10 @@ public class Player : MonoBehaviour
 
     private float angle = 0.0f;
 
+    public AudioClip audio = null;
+
+    public AudioClip dieAudio = null;
+
     private void Awake()
     {
         if (gameObject.tag != "Player") return;
@@ -116,6 +120,7 @@ public class Player : MonoBehaviour
     public IEnumerator PlayerDie()
     {
         float time = 0.0f;
+        SoundManager.instance.PlayEffect(dieAudio);
         while(time < 2.0f)
         {
             for (int i = 0; i < bodys.Count; i++)
@@ -136,6 +141,8 @@ public class Player : MonoBehaviour
 
         sizeUpCount++;
 
+        if (audio)
+            SoundManager.instance.PlayEffect(audio);
         if (sizeUpCount % 10 == 0)
         {
             GameObject obj = Instantiate(body, transform);

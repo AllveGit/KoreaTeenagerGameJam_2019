@@ -53,6 +53,8 @@ MonoBehaviour:
   stageScale: 1
   speed: 3
   body: {fileID: 9173049816359134706, guid: a9ed974bbb05fb0449589e53bb65d044, type: 3}
+  audio: {fileID: 8300000, guid: 433dc6e710cfe3e42bf36d35a657035c, type: 3}
+  dieAudio: {fileID: 8300000, guid: b6e2a9144b7c36a4b9e602cb69133ce0, type: 3}
 --- !u!1001 &297863892
 PrefabInstance:
   m_ObjectHideFlags: 0
