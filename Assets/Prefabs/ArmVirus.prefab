@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8849736345550817139}
   - component: {fileID: 6375314985815358879}
   - component: {fileID: -38808855952043731}
+  - component: {fileID: 3237613318505110603}
   m_Layer: 0
   m_Name: ArmVirus
   m_TagString: Enemy
@@ -113,3 +114,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VirusScale: 1.2
+--- !u!58 &3237613318505110603
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3734805768926160309}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.05
