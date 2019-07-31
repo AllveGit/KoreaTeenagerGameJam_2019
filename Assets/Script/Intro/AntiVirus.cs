@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AntiVirus : MonoBehaviour
+public class AntiVirus : Virus
 {
     bool bScaleUp = false;
     float fScale = 0.6f;
