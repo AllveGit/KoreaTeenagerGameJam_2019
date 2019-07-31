@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -94,17 +95,19 @@ public class Player : MonoBehaviour
     public IEnumerator PlayerDie()
     {
         float time = 0.0f;
-        while(time < 1.0f)
+        while(time < 2.0f)
         {
             for (int i = 0; i < bodys.Count; i++)
             {
                 SpriteRenderer spRenderer = bodys[i].GetComponent<SpriteRenderer>();
 
-                spRenderer.color -= new Color(0, 0, 0, 0.1f);
+                spRenderer.color -= new Color(0, 0, 0, 0.05f);
             }
+            time += 0.1f;
             yield return new WaitForSeconds(0.1f);
         }
-        Destroy(gameObject);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //Destroy(gameObject);
     }
 
     public void SizeUp()

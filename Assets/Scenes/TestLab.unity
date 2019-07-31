@@ -413,5 +413,10 @@ PrefabInstance:
       propertyPath: VirusScale
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2992794777476521894, guid: 17b7ecce60ecfec4ab165a3bd210f919,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17b7ecce60ecfec4ab165a3bd210f919, type: 3}
