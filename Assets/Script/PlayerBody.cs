@@ -10,7 +10,7 @@ public class PlayerBody : VirusObject
     private Player player = null;
 
     [Range(0.0f, 1.0f)]
-    public float overTime = 0.0f;
+    public float overTime = 0.035f;
 
     private SpriteRenderer spRenderer = null;
 
@@ -61,7 +61,7 @@ public class PlayerBody : VirusObject
     {
         List<Transform> bodyList = Player.bodys;
         if (Vector2.Distance(transform.position, bodyList[myOrder - 1].position) < 0.15f * (Player.scale)) return;
-
+           
         Vector3 moveVector = Vector3.SmoothDamp(transform.position, bodyList[myOrder - 1].position,
             ref movementVelocity, overTime * Player.scale) - transform.position;
         transform.position += moveVector * Player.timeScale;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MainMenuButton : MonoBehaviour
 {
@@ -41,5 +42,10 @@ public class MainMenuButton : MonoBehaviour
         }
 
         GetComponent<Image>().transform.localScale = new Vector3(fScale, fScale, 1f);
+    }
+
+    public void SceneChange()
+    {
+        SceneManager.LoadScene(0);
     }
 }

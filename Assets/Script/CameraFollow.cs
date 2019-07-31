@@ -7,6 +7,9 @@ public class CameraFollow : MonoBehaviour
     [SerializeField]
     private float MoveSpeed = 3.5f;
 
+    [SerializeField]
+    private bool isWater = false;
+
     public bool bIntro = true;
     private bool bZoomIn = false;
     public float CameraSize;
@@ -63,6 +66,14 @@ public class CameraFollow : MonoBehaviour
         theCamera = GetComponent<Camera>();
         halfHeight = theCamera.orthographicSize;
         halfWidth = halfHeight * Screen.width / Screen.height;
+
+        if(isWater)
+        {
+            Player obj = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        
+            theCamera.orthographicSize *= obj.StageScale;
+            CameraOriginSize *= obj.StageScale;
+        }
     }
 
     void Update()
