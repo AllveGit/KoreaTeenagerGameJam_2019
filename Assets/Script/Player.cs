@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
 
     public float scale = 1.0f;
 
+    [SerializeField]
+    private float stageScale = 1.0f;
+
     private PlayerBody head = null;
 
     public PlayerBody Head { get => head; set => head = value; }
@@ -22,11 +25,16 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject body = null;
 
+    private int sizeUpCount = 0;
+
+    private float angle = 0.0f;
+
 
     // Start is called before the first frame update
     void Start()
     {
         Head = bodys[0].GetComponent<PlayerBody>();
+        scale *= stageScale;
     }
 
     // Update is called once per frame
@@ -40,6 +48,16 @@ public class Player : MonoBehaviour
         Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouse.z = 0;
 
+        float h = Input.GetAxis("Horizontal");
+        angle += h * Time.fixedDeltaTime * 100;
+        
+        //Head.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+
+        Vector3 direction = new Vector3(Mathf.Sin(angle), Mathf.Cos(angle), 0);
+        
+        Vector3 targetPos = Head.transform.position + direction * 10;
+        targetPos = Vector3.MoveTowards(Head.transform.position, targetPos, Time.fixedDeltaTime * scale * speed);
+        //Head.transform.position = targetPos;
         Head.PlayerMove(mouse);
     }
 
@@ -61,9 +79,11 @@ public class Player : MonoBehaviour
 
     public void SizeUp()
     {
-        scale += 0.1f;
+        scale += 0.05f;
 
-        if(scale % 1 == 0)
+        sizeUpCount++;
+
+        if (sizeUpCount % 2 == 0)
         {
             GameObject obj = Instantiate(body, transform);
 

@@ -77,7 +77,6 @@ public class PlayerBody : VirusObject
 
         transform.position = new Vector3(transform.position.x, transform.position.y, myOrder + 1);
     }
-    
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
