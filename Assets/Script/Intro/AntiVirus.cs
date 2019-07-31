@@ -13,7 +13,7 @@ public class AntiVirus : Virus
 
     void Awake()
     {
-        m_Player = GameObject.FindGameObjectWithTag("PlayerHead");
+        m_Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().Head.gameObject;
         while(Dir.y == 0 || Dir.x == 0)
             Dir = new Vector3(Random.Range(-1, 2), Random.Range(-1, 2), 0);
 

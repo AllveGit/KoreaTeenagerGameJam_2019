@@ -28,17 +28,38 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private GameObject body = null;
+    
 
     private int sizeUpCount = 0;
 
     private float angle = 0.0f;
 
+    private void Awake()
+    {
+        if (gameObject.tag != "Player") return;
 
+        for (int i = 0; i < MainGame.instance.playerBodyCount; i++)
+        {
+            bodys.Add(Instantiate(body, transform).transform);
+        }
+
+        var obj = bodys[1];
+        bodys[1] = bodys[bodys.Count - 1];
+        bodys[bodys.Count - 1] = obj;
+
+        Head = bodys[0].GetComponent<PlayerBody>();
+
+        scale = MainGame.instance.playerScale;
+
+        scale *= stageScale;
+
+        if(UIManager.instance)
+            UIManager.instance.IsEnd = false;
+    }
     // Start is called before the first frame update
     void Start()
     {
-        Head = bodys[0].GetComponent<PlayerBody>();
-        scale *= stageScale;
+       
     }
 
     // Update is called once per frame
