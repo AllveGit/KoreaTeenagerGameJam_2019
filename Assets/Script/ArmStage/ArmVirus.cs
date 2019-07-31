@@ -57,7 +57,7 @@ public class ArmVirus : Virus
         if(bMoving)
         {
             time += Time.deltaTime;
-            if (time > 1.0f)
+            if (time > 5.0f)
             {
                 path = AstarManager.Instance.AstarPathFinder(transform.position, m_Player.transform.position);
                 nowPath = path.Count - 1;

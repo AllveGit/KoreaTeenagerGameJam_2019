@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BrainStage.unity
     guid: 1f77c49e9fe502c48a59bad10075c328
+  - enabled: 1
+    path: Assets/Scenes/Ending.unity
+    guid: a41afbbac5fc8534ea8f8360e35ba99d
   m_configObjects: {}

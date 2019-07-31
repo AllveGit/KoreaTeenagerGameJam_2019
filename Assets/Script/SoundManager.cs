@@ -7,7 +7,12 @@ public class SoundManager : MonoBehaviour
     public AudioSource MusicSource;
     public AudioSource EffectSource;
 
+    float PrevMusicValue = -1;
+    float PrevEffectValue = -1;
+
     public static SoundManager instance = null;
+
+    public bool mute = false;
 
     private void Awake()
     {
@@ -16,6 +21,27 @@ public class SoundManager : MonoBehaviour
         else Destroy(this.gameObject);
 
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    private void Update()
+    {
+        if (EffectSource.volume != 0)
+            PrevEffectValue = EffectSource.volume;
+
+        if (MusicSource.volume != 0)
+            PrevMusicValue = MusicSource.volume;
+
+
+        if(mute)
+        {
+            EffectSource.volume = 0;
+            MusicSource.volume = 0;
+        }
+        else
+        {
+            EffectSource.volume = PrevEffectValue;
+            MusicSource.volume = PrevMusicValue;
+        }
     }
 
     public void PlayMusic(AudioClip clip)
@@ -35,11 +61,19 @@ public class SoundManager : MonoBehaviour
 
     public void SetEffectVolume(float percent)
     {
-        EffectSource.volume = percent;
+        if(!mute)
+            EffectSource.volume = percent;
+
+        else
+            EffectSource.volume = 0;
     }
 
     public void SetBGVolume(float percent)
     {
-        MusicSource.volume = percent;
+        if (!mute)
+            MusicSource.volume = percent;
+
+        else
+            MusicSource.volume = 0;
     }
 }
