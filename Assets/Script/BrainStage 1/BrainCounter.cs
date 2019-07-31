@@ -20,7 +20,7 @@ public class BrainCounter : MonoBehaviour
             ChangeTime -= Time.deltaTime;
             if(ChangeTime <= 0f)
             {
-                SceneManager.LoadScene(8);
+                SceneManager.LoadScene(9);
             }
             FindObjectOfType<FadeManager>().BeginFade(1);
         }

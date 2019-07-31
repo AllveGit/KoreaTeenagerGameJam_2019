@@ -60,4 +60,9 @@ public class MainMenuButton : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
+    public void SoundMute()
+    {
+        SoundManager.instance.mute = !SoundManager.instance.mute;
+    }
 }
