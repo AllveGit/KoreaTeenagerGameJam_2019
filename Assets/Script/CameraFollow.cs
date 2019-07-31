@@ -11,9 +11,12 @@ public class CameraFollow : MonoBehaviour
     private bool isWater = false;
 
     public bool bIntro = true;
+    public bool bShowStage = false;
     private bool bZoomIn = false;
     public float CameraSize;
     public float CameraOriginSize;
+
+    public GameObject StageEffect;
 
     private GameObject player;
 
@@ -83,6 +86,12 @@ public class CameraFollow : MonoBehaviour
             float fDist = CameraSize - Camera.main.orthographicSize;
             if (fDist < 0.1f)
             {
+                if (!bShowStage)
+                {
+                    StageEffect.GetComponent<StageFadeText>().bEnabled = true;
+                    bShowStage = true;
+                }
+
                 Camera.main.orthographicSize = CameraSize;
                 StartCoroutine(ZoomIn());
             }
@@ -97,7 +106,9 @@ public class CameraFollow : MonoBehaviour
         {
             float fDist = Camera.main.orthographicSize - CameraOriginSize;
             if (fDist < 0.1f)
+            {
                 Camera.main.orthographicSize = CameraOriginSize;
+            }
             else
             {
                 Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, CameraOriginSize, 0.1f);
