@@ -23,6 +23,9 @@ public class EndPos : MonoBehaviour
             if (ChangeTime <= 0)
             {
                 ChangeTime = 0;
+                Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+                MainGame.instance.playerScale = player.scale;
+                MainGame.instance.playerBodyCount = player.bodys.Count;
                 SceneManager.LoadScene(SceneNum);
             }
         }

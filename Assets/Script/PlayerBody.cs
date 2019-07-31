@@ -86,9 +86,18 @@ public class PlayerBody : Virus
     {
         if (collision.gameObject.tag.Equals("Enemy") && Player.IsDie == false)
         {
-            Player.IsDie = true;
-            Player.timeScale = 0.0f;
-            Player.StartCoroutine(Player.PlayerDie());
+            Virus virus = collision.gameObject.GetComponent<Virus>();
+            if (virus && virus.VirusScale < player.scale / 2)
+            {
+                player.SizeUp();
+                Destroy(virus.gameObject);
+            }
+            else
+            {
+                Player.IsDie = true;
+                Player.timeScale = 0.0f;
+                Player.StartCoroutine(Player.PlayerDie());
+            }
         }
     }
 }
