@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
 
     public PlayerBody Head { get => head; set => head = value; }
     public bool IsDie { get => isDie; set => isDie = value; }
+    public float StageScale { get => stageScale; set => stageScale = value; }
 
     private bool isDie = false;
 
