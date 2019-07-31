@@ -14,6 +14,8 @@ public class PlayerBody : Virus
 
     private SpriteRenderer spRenderer = null;
 
+    public Rigidbody2D rb2d = null;
+
     public Player Player { get => player; set => player = value; }
 
 
@@ -21,7 +23,9 @@ public class PlayerBody : Virus
     void Start()
     {
         spRenderer = GetComponent<SpriteRenderer>();
-        if(Player == null)
+        rb2d = GetComponent<Rigidbody2D>();
+
+        if (Player == null)
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 

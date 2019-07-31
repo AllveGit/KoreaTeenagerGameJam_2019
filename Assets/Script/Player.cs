@@ -85,9 +85,9 @@ public class Player : MonoBehaviour
         else if (angle > 360)
             angle = angle - 360;
 
-         
 
-        Head.transform.position += Head.transform.up * Time.deltaTime * timeScale * speed;
+        Vector3 movePos = Head.transform.position + Head.transform.up * Time.deltaTime * timeScale * speed;
+        Head.rb2d.MovePosition(movePos);
         //Head.PlayerMove(mouse);
     }
 
