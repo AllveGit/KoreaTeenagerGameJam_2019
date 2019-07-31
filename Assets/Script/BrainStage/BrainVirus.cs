@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BrainVirus : Virus
 {
+    bool bScaleUp = false;
+    float fScale = 0.6f;
     PlayerBody player = null;
     bool isMove = false;
     List<Vector2> path;
@@ -12,6 +14,7 @@ public class BrainVirus : Virus
     Rigidbody2D rb2d = null;
     float speed = 1.0f;
     Vector3 velocityPos = new Vector3(0, 0);
+    float time = 0.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +27,30 @@ public class BrainVirus : Virus
 
     private void FixedUpdate()
     {
+        if (!bScaleUp)
+        {
+            fScale -= Time.fixedDeltaTime;
+
+            if (fScale < 0.5)
+            {
+                bScaleUp = true;
+                fScale = 0.5f;
+            }
+        }
+
+        else
+        {
+            fScale += Time.fixedDeltaTime;
+
+            if (fScale > 0.6f)
+            {
+                bScaleUp = false;
+                fScale = 0.6f;
+            }
+        }
+
+        transform.localScale = new Vector3(fScale, fScale, 1);
+
         float dis = Vector3.Distance(player.transform.position, transform.position);
 
         if (dis < 8 && VirusScale > player.Player.scale)
@@ -35,10 +62,16 @@ public class BrainVirus : Virus
         }
         if(isMove)
         {
-            if (nowPath < 0)
+            time += Time.deltaTime;
+            if (time > 1.0f)
             {
                 path = AstarManager.Instance.AstarPathFinder(transform.position, player.transform.position);
                 nowPath = path.Count - 1;
+                time = 0.0f;
+            }
+            if (nowPath < 0)
+            {
+                return;
             }
             transform.position = Vector2.MoveTowards(transform.position, path[nowPath], Time.fixedDeltaTime);
 
