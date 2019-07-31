@@ -17,4 +17,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LiverStage.unity
     guid: 92f5e693bad7cb14a98e227edc03508d
+  - enabled: 1
+    path: Assets/Scenes/StomachStage.unity
+    guid: aba6c1efa3f162f448edffd039896e1f
+  - enabled: 1
+    path: Assets/Scenes/LungsStage.unity
+    guid: 31ec3b25902b5014e87b778a203a6928
+  - enabled: 1
+    path: Assets/Scenes/HeartStage.unity
+    guid: d3e4b473411f59245b3d2f5c9ed5ad8e
   m_configObjects: {}
