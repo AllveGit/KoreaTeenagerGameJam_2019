@@ -27,10 +27,10 @@ public class AntiVirus : Virus
         {
             fScale -= Time.fixedDeltaTime;
 
-            if (fScale < 0.5f)
+            if (fScale < 0.25f)
             {
                 bScaleUp = true;
-                fScale = 0.5f;
+                fScale = 0.25f;
             }
         }
 
@@ -38,10 +38,10 @@ public class AntiVirus : Virus
         {
             fScale += Time.fixedDeltaTime;
 
-            if (fScale > 0.6f)
+            if (fScale > 0.35f)
             {
                 bScaleUp = false;
-                fScale = 0.6f;
+                fScale = 0.35f;
             }
         }
 
