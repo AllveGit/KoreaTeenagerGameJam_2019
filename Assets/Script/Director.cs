@@ -11,7 +11,7 @@ public class Director : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        camera = Camera.main.GetComponent<CameraFollow>();
+        camera = Camera.main.GetComponent<CameraFollow>();      
         player = GameObject.FindGameObjectWithTag("PlayerHead");
         bDirecting = true;
     }

@@ -7,6 +7,11 @@ public class CameraFollow : MonoBehaviour
     [SerializeField]
     private float MoveSpeed = 3.5f;
 
+    public bool bIntro = true;
+    private bool bZoomIn = false;
+    public float CameraSize;
+    public float CameraOriginSize;
+
     private GameObject player;
 
     public Texture2D DirectingTexture;
@@ -32,6 +37,8 @@ public class CameraFollow : MonoBehaviour
 
     void Start()
     {
+        CameraOriginSize = Camera.main.orthographicSize;
+
         Player = GameObject.FindGameObjectWithTag("Director");
         if(player == null)
             Player = GameObject.FindGameObjectWithTag("PlayerHead");
@@ -60,38 +67,66 @@ public class CameraFollow : MonoBehaviour
 
     void Update()
     {
-        if (boundBox == null)
-        {
-            boundBox = GameObject.FindGameObjectWithTag("MapBound").GetComponent<BoxCollider2D>();
-            minBounds = boundBox.bounds.min;
-            maxBounds = boundBox.bounds.max;
-            FindBound = true;
-        }
+        if (bIntro)
+        { 
+            float fDist = CameraSize - Camera.main.orthographicSize;
+            if (fDist < 0.1f)
+            {
+                Camera.main.orthographicSize = CameraSize;
+                StartCoroutine(ZoomIn());
+            }
 
-        if ((transform.position.x < minBounds.x + halfWidth || transform.position.x > maxBounds.x - halfWidth ||
-            transform.position.y < minBounds.y + halfHeight || transform.position.y > maxBounds.y - halfHeight) && FindBound)
-        {
-            TargetPos = new Vector3(boundBox.bounds.center.x, boundBox.bounds.center.y, -10);
-            transform.position = Vector3.Lerp(transform.position, TargetPos, Time.deltaTime * 3f);
+            else
+            {
+                Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, CameraSize, 0.1f);
+            }
         }
 
         else
         {
-            FindBound = false;
+            float fDist = Camera.main.orthographicSize - CameraOriginSize;
+            if (fDist < 0.1f)
+                Camera.main.orthographicSize = CameraOriginSize;
+            else
+            {
+                Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, CameraOriginSize, 0.1f);
+            }
 
-            TargetPos = new Vector3(Player.transform.position.x, Player.transform.position.y, transform.position.z);
-            transform.position = Vector3.Lerp(transform.position, TargetPos, Time.deltaTime * MoveSpeed);
+            if (boundBox == null)
+            {
+                boundBox = GameObject.FindGameObjectWithTag("MapBound").GetComponent<BoxCollider2D>();
+                minBounds = boundBox.bounds.min;
+                maxBounds = boundBox.bounds.max;
+                FindBound = true;
+            }
 
-            float ClampedX = Mathf.Clamp(transform.position.x, minBounds.x + halfWidth, maxBounds.x - halfWidth);
-            float ClampedY = Mathf.Clamp(transform.position.y, minBounds.y + halfHeight, maxBounds.y - halfHeight);
+            if ((transform.position.x < minBounds.x + halfWidth || transform.position.x > maxBounds.x - halfWidth ||
+                transform.position.y < minBounds.y + halfHeight || transform.position.y > maxBounds.y - halfHeight) && FindBound)
+            {
+                TargetPos = new Vector3(boundBox.bounds.center.x, boundBox.bounds.center.y, -10);
+                transform.position = Vector3.Lerp(transform.position, TargetPos, Time.deltaTime * 3f);
+            }
 
-            transform.position = new Vector3(ClampedX, ClampedY, -10);
+            else
+            {
+                FindBound = false;
+
+                TargetPos = new Vector3(Player.transform.position.x, Player.transform.position.y, transform.position.z);
+                transform.position = Vector3.Lerp(transform.position, TargetPos, Time.deltaTime * MoveSpeed);
+
+                float ClampedX = Mathf.Clamp(transform.position.x, minBounds.x + halfWidth, maxBounds.x - halfWidth);
+                float ClampedY = Mathf.Clamp(transform.position.y, minBounds.y + halfHeight, maxBounds.y - halfHeight);
+
+                transform.position = new Vector3(ClampedX, ClampedY, -10);
+            }
         }
     }
 
     void OnGUI()
     {
-        if (FindObjectOfType<Director>().GetDirecting())
+        Director Ang = FindObjectOfType<Director>();
+
+        if (Ang && Ang.GetDirecting())
         {
             Alpha += Time.deltaTime;
 
@@ -121,5 +156,15 @@ public class CameraFollow : MonoBehaviour
         minBounds = newBounds.bounds.min;
         maxBounds = newBounds.bounds.max;
         FindBound = true;
+    }
+
+    IEnumerator ZoomIn()
+    {
+        if (!bZoomIn)
+        {
+            bZoomIn = true;
+            yield return new WaitForSeconds(2f);
+            bIntro = false;
+        }
     }
 }
