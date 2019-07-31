@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/ArmStage.unity
     guid: 23fda750f18970a47b67b56c5426d5a2
   - enabled: 1
-    path: Assets/Scenes/HeartStage.unity
-    guid: d3e4b473411f59245b3d2f5c9ed5ad8e
+    path: Assets/Scenes/IntestineStage.unity
+    guid: 025679e5e247954478b83524d07b08da
+  - enabled: 1
+    path: Assets/Scenes/LiverStage.unity
+    guid: 92f5e693bad7cb14a98e227edc03508d
   m_configObjects: {}
