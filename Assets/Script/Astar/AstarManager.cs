@@ -125,20 +125,23 @@ public class AstarManager : MonoBehaviour
     // 그 위치의 타일을 반환
     GameObject GetTargetToTile(Vector2 nowPosition)
     {
-        Ray2D ray = new Ray2D(nowPosition, Vector2.zero);
-        RaycastHit2D[] hit = Physics2D.RaycastAll(ray.origin, ray.direction);
-
-        GameObject nowObject = null;
-
-        for (int i = 0; i < hit.Length; i++)
+        for(int i = 0; i < tileList.Count; i++)
         {
-            var hitobj = hit[i].collider.gameObject;
-            if (hitobj.CompareTag("RectangleTile"))
+            for(int j = 0; j < tileList.Count; j++)
             {
-                nowObject = hitobj;
+                SpriteRenderer spRenderer = tileList[i][j].GetComponent<SpriteRenderer>();
+                Vector2 position = tileList[i][j].transform.position;
+
+                if (position.x - spRenderer.bounds.size.x * 0.5f < nowPosition.x
+                    && position.x + spRenderer.bounds.size.x * 0.5f > nowPosition.x &&
+                    position.y - spRenderer.bounds.size.y * 0.5f < nowPosition.y
+                    && position.y + spRenderer.bounds.size.y * 0.5f > nowPosition.y)
+                {
+                    return tileList[i][j];
+                }
             }
         }
-        return nowObject;
+        return null;
     }
     // 타일 노드 생성
     TileNode TileNodeInit(Vector2Int pivotPos, Vector2Int tilePos, Vector2Int targetPos, TileNode parent)

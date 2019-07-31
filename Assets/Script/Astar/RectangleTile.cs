@@ -8,22 +8,37 @@ public class RectangleTile : MonoBehaviour
 
     public bool IsWall { get => isWall; set => isWall = value; }
 
+    private SpriteRenderer spRenderer = null;
+
     // Start is called before the first frame update
     void Start()
     {
-        isWall = IsTileWall();
+        spRenderer = GetComponent<SpriteRenderer>();
+
+        Vector2 size = spRenderer.bounds.size * 0.6f;
+        Vector3 target = transform.position - new Vector3(size.x, size.y, 0);
+        isWall = IsTileWall(new Vector2(target.x, target.y));
+        if (isWall == true) return;
+        isWall = IsTileWall(new Vector2(target.x + size.x, target.y));
+        if (isWall == true) return;
+        isWall = IsTileWall(new Vector2(target.x, target.y + size.y));
+        if (isWall == true) return;
+        isWall = IsTileWall(new Vector2(target.x + size.x, target.y + size.y));
+        if (isWall == true) return;
+        isWall = IsTileWall(new Vector2(target.x + size.x * 0.5f, target.y + size.y * 0.5f));
+        if (isWall == true) return;
     }
 
     // Update is called once per frame
     void Update()
     {
         if (isWall)
-            GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.5f);
+            spRenderer.color = new Color(1, 0, 0, 0.5f);
     }
 
-    bool IsTileWall()
+    bool IsTileWall(Vector2 target)
     {
-        Ray2D ray2D = new Ray2D(transform.position, Vector2.zero);
+        Ray2D ray2D = new Ray2D(target, Vector2.zero);
         RaycastHit2D[] hit = Physics2D.RaycastAll(ray2D.origin, ray2D.direction);
 
         int length = hit.Length;

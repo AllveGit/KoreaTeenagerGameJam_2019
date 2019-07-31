@@ -10,6 +10,7 @@ public class ArmVirus : Virus
     float fScale = 1.1f;
     List<Vector2> path;
     int nowPath = 0;
+    float time = 0.0f;
 
     void Awake()
     {
@@ -55,15 +56,21 @@ public class ArmVirus : Virus
 
         if(bMoving)
         {
-            transform.position = Vector2.MoveTowards(transform.position, path[nowPath], Time.deltaTime);
-
-            if (Vector2.Distance(transform.position, path[nowPath]) < 0.1f)
-                nowPath -= 1;
-            if(nowPath < 0)
+            time += Time.deltaTime;
+            if (time > 1.0f)
             {
                 path = AstarManager.Instance.AstarPathFinder(transform.position, m_Player.transform.position);
                 nowPath = path.Count - 1;
+                time = 0.0f;
             }
+            if (nowPath < 0)
+            {
+                return;
+            }
+            transform.position = Vector2.MoveTowards(transform.position, path[nowPath], Time.fixedDeltaTime);
+
+            if (Vector2.Distance(transform.position, path[nowPath]) < 0.1f)
+                nowPath -= 1;
         }
     }
 }
