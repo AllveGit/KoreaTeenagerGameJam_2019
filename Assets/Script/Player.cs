@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
 
     public float scale = 1.0f;
 
+    float fAccel = 0;
+
     [SerializeField]
     private float stageScale = 1.0f;
 
@@ -20,7 +22,7 @@ public class Player : MonoBehaviour
 
     private bool isDie = false;
 
-    public float speed = 3.0f;
+    public float speed = 0.0f;
 
     [SerializeField]
     private GameObject body = null;
@@ -48,17 +50,44 @@ public class Player : MonoBehaviour
         Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouse.z = 0;
 
-        float h = Input.GetAxis("Horizontal");
-        angle += h * Time.fixedDeltaTime * 100;
-        
-        //Head.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        //angle = transform.localEulerAngles.z;
 
-        Vector3 direction = new Vector3(Mathf.Sin(angle), Mathf.Cos(angle), 0);
-        
-        Vector3 targetPos = Head.transform.position + direction * 10;
-        targetPos = Vector3.MoveTowards(Head.transform.position, targetPos, Time.fixedDeltaTime * scale * speed);
-        //Head.transform.position = targetPos;
-        Head.PlayerMove(mouse);
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
+
+        angle += h * Time.fixedDeltaTime * 300;
+
+        speed += v * Time.fixedDeltaTime * fAccel;
+
+        if (speed > 9)
+            speed = 9;
+
+        if (v == 0)
+        {
+            speed -= 10 * Time.fixedDeltaTime;
+            fAccel = 0;
+        }
+
+        else
+        {
+            fAccel += Time.fixedDeltaTime * 8;
+        }
+
+        if (speed < 0)
+            speed = 0;
+
+        bodys[0].transform.localEulerAngles = new Vector3(0, 0, -angle);
+
+        if (angle < 0)
+            angle = 360 + angle;
+
+        else if (angle > 360)
+            angle = angle - 360;
+
+         
+
+        Head.transform.position += Head.transform.up * Time.deltaTime * timeScale * speed;
+        //Head.PlayerMove(mouse);
     }
 
     public IEnumerator PlayerDie()
