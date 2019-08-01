@@ -27,7 +27,7 @@ public class WaterSpawn : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(30f);
+            yield return new WaitForSeconds(40f);
 
             for (int i = 0; i < 40; i++)
             {

@@ -21,7 +21,7 @@ public class AcidSpawner : MonoBehaviour
         while (true)
         {
 
-            yield return new WaitForSeconds(10f);
+            yield return new WaitForSeconds(15f);
             for (int i = 0; i < 50; i++)
             {
                 Instantiate(Acid, this.transform.position, Quaternion.identity, this.transform);

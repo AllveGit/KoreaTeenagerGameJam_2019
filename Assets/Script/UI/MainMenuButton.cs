@@ -58,7 +58,7 @@ public class MainMenuButton : MonoBehaviour
 
     public void SceneChange()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(6);
     }
 
     public void SoundMute()
