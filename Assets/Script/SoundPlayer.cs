@@ -6,7 +6,7 @@ public class SoundPlayer : MonoBehaviour
 {
     public AudioClip m_Sound;
 
-    private void Awake()
+    private void Start()
     {
         SoundManager.instance.PlayMusic(m_Sound);
     }

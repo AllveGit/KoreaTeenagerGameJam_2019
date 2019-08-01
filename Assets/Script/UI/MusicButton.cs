@@ -2,30 +2,49 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
-public class MainMenuButton : MonoBehaviour
+public class MusicButton : MonoBehaviour
 {
     public Sprite IdleSprite;
     public Sprite OverSprite;
+    public Sprite IdleSprite2;
+    public Sprite OverSprite2;
     bool bScaleup = false;
     float fScale = 1f;
 
     public void OnEnter()
     {
-        GetComponent<Image>().sprite = OverSprite;
+        if (!SoundManager.instance.mute)
+        {
+            GetComponent<Image>().sprite = OverSprite;
+        }
+
+        else
+        {
+            GetComponent<Image>().sprite = OverSprite2;
+        }
+
         bScaleup = true;
     }
 
     public void OnExit()
     {
-        GetComponent<Image>().sprite = IdleSprite;
+        if (!SoundManager.instance.mute)
+        {
+            GetComponent<Image>().sprite = IdleSprite;
+        }
+
+        else
+        {
+            GetComponent<Image>().sprite = IdleSprite2;
+        }
+
         bScaleup = false;
     }
 
     private void FixedUpdate()
     {
-        if(bScaleup)
+        if (bScaleup)
         {
             fScale += Time.deltaTime;
 
@@ -44,20 +63,8 @@ public class MainMenuButton : MonoBehaviour
         GetComponent<Image>().transform.localScale = new Vector3(fScale, fScale, 1f);
     }
 
-    public void Retry()
+    public void SoundMute()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        UIManager.instance.CloseWindow();
-    }
-
-    public void MainMenu()
-    {
-        SceneManager.LoadScene(0);
-        UIManager.instance.CloseWindow();
-    }
-
-    public void SceneChange()
-    {
-        SceneManager.LoadScene(1);
+        SoundManager.instance.mute = !SoundManager.instance.mute;
     }
 }
