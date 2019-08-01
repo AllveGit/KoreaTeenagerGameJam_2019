@@ -7,6 +7,10 @@
 
 		SubShader{
 			Cull Off
+			Blend One OneMinusSrcAlpha
+
+			Tags {"RenderType" = "Opaque"}
+			LOD 100
 
 			Pass
 			{
@@ -33,14 +37,23 @@
 					return o;
 				}
 
-				fixed4 _OutlineColor;
+				fixed4 _Color;
 				float4 _MainTex_TexelSize;
 
 				fixed4 fragFunc(v2f i) : COLOR
 				{
 					float4 c = tex2D(_MainTex, i.uv);
+					c.rgb *= c.a;
+					float4 outlineC = _Color;
+					outlineC.a *= ceil(c.a);
+					outlineC.rgb *= outlineC.a;
 
-					return c;
+					fixed upAlpha = tex2D(_MainTex, i.uv + fixed2(0, _MainTex_TexelSize.y)).a;
+					fixed downAlpha = tex2D(_MainTex, i.uv - fixed2(0, _MainTex_TexelSize.y)).a;
+					fixed rightAlpha = tex2D(_MainTex, i.uv + fixed2(_MainTex_TexelSize.x, 0)).a;
+					fixed leftAlpha = tex2D(_MainTex, i.uv - fixed2(_MainTex_TexelSize.x, 0)).a;
+
+					return lerp(outlineC, c, ceil(upAlpha * downAlpha * rightAlpha * leftAlpha));
 				}
 			ENDCG
 		}
