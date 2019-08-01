@@ -18,14 +18,22 @@ public class BrainItem : MonoBehaviour
     {
         if(collision.gameObject.layer == 8)
         {
-
             GameObject Temp = Instantiate(PopupText, Vector3.zero, Quaternion.identity, GameObject.FindGameObjectWithTag("Finish").transform) as GameObject;
 
             Vector2 ScreenPos = Camera.main.WorldToScreenPoint(this.transform.position);
 
             Temp.transform.position = ScreenPos;
             counter.iBrainItemCnt++;
+
+            Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            player.SizeUp();
+
             Destroy(this.gameObject);
         }
+    }
+
+    public void EatItem()
+    {
+
     }
 }

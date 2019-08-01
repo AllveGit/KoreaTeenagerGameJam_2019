@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27222d74b44113e478570b2f7421a45d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VirusScale: 2
+  VirusScale: 2.3
 --- !u!95 &2992794777476521897
 Animator:
   serializedVersion: 3
