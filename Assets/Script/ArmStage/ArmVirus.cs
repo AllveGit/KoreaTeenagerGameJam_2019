@@ -12,6 +12,9 @@ public class ArmVirus : Virus
     int nowPath = 0;
     float time = 0.0f;
 
+    [SerializeField]
+    private float speed = 1.5f;
+
     void Awake()
     {
         m_Player = GameObject.FindGameObjectWithTag("PlayerHead");
@@ -47,7 +50,7 @@ public class ArmVirus : Virus
 
         float fDist = vDir.magnitude;
 
-        if(fDist < 5f)
+        if(fDist < 10f && bMoving == false)
         {
             bMoving = true;
             path = AstarManager.Instance.AstarPathFinder(transform.position, m_Player.transform.position);
@@ -57,7 +60,7 @@ public class ArmVirus : Virus
         if(bMoving)
         {
             time += Time.deltaTime;
-            if (time > 3.0f)
+            if (time > 1.0f)
             {
                 path = AstarManager.Instance.AstarPathFinder(transform.position, m_Player.transform.position);
                 nowPath = path.Count - 1;
@@ -67,7 +70,7 @@ public class ArmVirus : Virus
             {
                 return;
             }
-            transform.position = Vector2.MoveTowards(transform.position, path[nowPath], Time.fixedDeltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, path[nowPath], Time.fixedDeltaTime * speed);
 
             if (Vector2.Distance(transform.position, path[nowPath]) < 0.1f)
                 nowPath -= 1;
