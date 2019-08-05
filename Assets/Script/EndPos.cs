@@ -25,7 +25,7 @@ public class EndPos : MonoBehaviour
                 ChangeTime = 0;
                 Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
                 MainGame.instance.playerScale = player.scale;
-                MainGame.instance.playerBodyCount = player.bodys.Count;
+                MainGame.instance.playerBodyCount = player.bodys.Count - 2;
                 SceneManager.LoadScene(SceneNum);
             }
         }

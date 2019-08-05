@@ -17,11 +17,11 @@ public class ArmVirus : Virus
 
     void Awake()
     {
-        m_Player = GameObject.FindGameObjectWithTag("PlayerHead");
     }
 
     void FixedUpdate()
     {
+        m_Player = GameObject.FindGameObjectWithTag("PlayerHead");
         if (!bScaleUp)
         {
             fScale -= Time.fixedDeltaTime;

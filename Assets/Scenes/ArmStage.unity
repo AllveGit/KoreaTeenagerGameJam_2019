@@ -1084,6 +1084,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 325597506140023594, guid: 67c07b79ea525a14f936b568017a8ca6,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67c07b79ea525a14f936b568017a8ca6, type: 3}
 --- !u!1 &1164519095
@@ -3658,6 +3663,12 @@ PrefabInstance:
       propertyPath: backgroundSprite
       value: 
       objectReference: {fileID: 1164519096}
+    - target: {fileID: 6157962807836493772, guid: cbebaa541afa83c4a83da8d9d59f7755,
+        type: 3}
+      propertyPath: tilePrefab
+      value: 
+      objectReference: {fileID: 3928047533945537649, guid: 6f30293aca2b34442817601c21ef7133,
+        type: 3}
     - target: {fileID: 9004907769781384938, guid: cbebaa541afa83c4a83da8d9d59f7755,
         type: 3}
       propertyPath: m_LocalPosition.x
